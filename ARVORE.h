@@ -106,24 +106,69 @@ void insere(Arv *arvore,int num)
     arvore->raiz = aux_insere(arvore->raiz,num);
 }
 
+// FUNÇÕES PARA IMPRESSÃO
 
+void PreOrder(NoArv *pai)
+{
+    printf ("%d -> ",pai->info);
 
+    if(pai->dir != NULL)
+    {
+        PreOrder(pai->dir);
+    }
 
+    if(pai->esq != NULL)
+    {
+        PreOrder(pai->esq);
+    }
+}
 
+void PosOrder(NoArv *pai)
+{
+    if(pai->dir != NULL)
+    {
+        PosOrder(pai->dir);
+    }
 
+    if(pai->esq != NULL)
+    {
+        PosOrder(pai->esq);
+    }
 
+    printf("%d -> ",pai->info);
+}
 
+void InOrder(NoArv *pai)
+{
+    if(pai->dir != NULL)
+    {
+        InOrder(pai->dir);
+    }
 
+    printf("%d -> ",pai->info);
 
+    if(pai->esq != NULL)
+    {
+        InOrder(pai->esq);
+    }
+}
 
+// FUNÇÃO PARA LIBERAR A ÁRVORE
 
+void LiberaArvore(NoArv *pai)
+{
+    if(pai->dir != NULL)
+    {
+        LiberaArvore(pai->dir);
+    }
 
+    if(pai->esq != NULL)
+    {
+        LiberaArvore(pai->esq);
+    }
 
-
-
-
-
-
+    free(pai);
+}
 
 
 
