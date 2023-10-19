@@ -153,6 +153,52 @@ void InOrder(NoArv *pai)
     }
 }
 
+// FUNÇÃO PARA BUSCAR UM ELEMENTO
+
+int busca(NoArv *raiz,int valor)
+{
+    int flag;
+    NoArv *pai;
+
+    flag = 2;
+    pai = raiz;
+
+    while(flag == 2)
+    {
+        if(pai->info < valor)
+        {
+            if(pai->dir == NULL)
+            {
+                flag = 1;
+            }
+            else
+            {
+                pai = pai->dir;
+            }
+        }
+        else
+        {
+            if(pai->info > valor)
+            {
+                if(pai->esq == NULL)
+                {
+                    flag = 1;
+                }
+                else
+                {
+                    pai = pai->esq;
+                }
+            }
+            else
+            {
+                flag = 0;
+            }
+        }
+    }
+
+    return flag;
+}
+
 // FUNÇÃO PARA LIBERAR A ÁRVORE
 
 void LiberaArvore(NoArv *pai)
