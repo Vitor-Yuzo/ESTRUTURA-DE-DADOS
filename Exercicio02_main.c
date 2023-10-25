@@ -5,21 +5,25 @@
 
 int nos_internos(NoArv *pai,int quantidade)
 {
-    *quantidade += 1;
+    quantidade += 1;
 
     if(pai->dir != NULL)
     {
-        nos_internos(pai->dir,quantidade);
+        quantidade = nos_internos(pai->dir,quantidade);
     }
 
     if(pai->esq != NULL)
     {
-        nos_internos(pai->esq,quantidade);
+        quantidade = nos_internos(pai->esq,quantidade);
     }
 
     if(pai->esq == NULL && pai->dir == NULL)
     {
-        *quantidade -= 1;
+        return quantidade -= 1;
+    }
+    else
+    {
+        return quantidade;
     }
 }
 
@@ -57,8 +61,9 @@ int main()
     insere(arvore1,60);
     insere(arvore1,55);
     insere(arvore1,70);
-    insere(arvore1,65);
     insere(arvore1,80);
+    insere(arvore1,90);
+    insere(arvore1,100);
 
     if(Arvore_Vazia(arvore1))
     {
@@ -102,7 +107,7 @@ int main()
     // QUANTIDADE DE NOS INTERNOS
 
     quantidade = -1;
-    nos_internos(arvore1->raiz,quantidade);
+    quantidade = nos_internos(arvore1->raiz,quantidade);
 
     printf ("\n\n%d ",quantidade);
 
